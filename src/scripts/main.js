@@ -12,8 +12,9 @@ const minutesDisplay = document.getElementById('minutes-display')
 const secondsDisplay = document.getElementById('seconds-display')
 const playButton = document.getElementById('play-button')
 
-let isRecording = false
 let isPlaying = false
+let totalSeconds = 0
+let intervalId = null
 
 const setDisplayTime = (hours, minutes, seconds) => {
     hoursDisplay.textContent = formatNumber(hours, 'hh')
@@ -21,48 +22,84 @@ const setDisplayTime = (hours, minutes, seconds) => {
     secondsDisplay.textContent = formatNumber(seconds, 'ss')
 }
 
-const setupDisplay = () => setDisplayTime(hoursInput.value, minutesInput.value, secondsInput.value)
+const setupDisplay = () => {
+    const hours = parseInt(hoursInput.value) || 0
+    const minutes = parseInt(minutesInput.value) || 0
+    const seconds = parseInt(secondsInput.value) || 0
+
+    totalSeconds = hours * 3600 + minutes * 60 + seconds
+
+    updateDisplayFromTotalSeconds()
+}
+
+const updateDisplayFromTotalSeconds = () => {
+    const hours = Math.floor(totalSeconds / 3600)
+    const minutes = Math.floor((totalSeconds % 3600) / 60)
+    const seconds = totalSeconds % 60
+
+    setDisplayTime(hours, minutes, seconds)
+}
 
 const updatePlayButtonText = () => {
     playButton.textContent = isPlaying ? 'Pause' : 'Play'
 }
 
+const startCountdown = () => {
+    if (intervalId !== null) return
+
+    intervalId = setInterval(() => {
+        if (totalSeconds > 0 && isPlaying) {
+            totalSeconds--
+
+            updateDisplayFromTotalSeconds()
+        } else {
+            resetTimer()
+            alert('Time is up!')
+        }
+    }, 1000)
+}
+
 const playPause = () => {
+    if (totalSeconds <= 0) return
+
     isPlaying = !isPlaying
 
     updatePlayButtonText()
+
+    if (isPlaying && intervalId === null) {
+        startCountdown()
+    } else if (!isPlaying && intervalId !== null) {
+        clearInterval(intervalId)
+
+        intervalId = null
+    }
+}
+
+const resetTimer = () => {
+    isPlaying = false
+    totalSeconds = 0
+
+    clearInterval(intervalId)
+    intervalId = null
+
+    setDisplayTime(0, 0, 0)
+    updatePlayButtonText()
+
+    menu.style.display = 'flex'
+    display.style.display = 'none'
 }
 
 startButton.addEventListener('click', () => {
-    if (!isRecording) {
-        isRecording = true
+    setupDisplay()
 
-        setupDisplay()
-        
-        isPlaying = true
+    isPlaying = true
 
-        updatePlayButtonText()
-    
-        menu.style.display = 'none'
-        display.style.display = 'flex'
-    }
+    updatePlayButtonText()
+    startCountdown()
+
+    menu.style.display = 'none'
+    display.style.display = 'flex'
 })
 
-stopButton.addEventListener('click', () => {
-    if (isRecording) {
-        isRecording = false
-
-        setDisplayTime(0, 0, 0)
-
-        if (isPlaying) {
-            isPlaying = false
-
-            updatePlayButtonText()
-        }
-    
-        menu.style.display = 'flex'
-        display.style.display = 'none'
-    }
-})
-
+stopButton.addEventListener('click', resetTimer)
 playButton.addEventListener('click', playPause)
