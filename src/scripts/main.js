@@ -1,4 +1,4 @@
-import { formatNumber } from "./utils.js"
+import { formatNumber } from './utils.js'
 
 const startButton = document.getElementById('start-button')
 const stopButton = document.getElementById('stop-button')
@@ -17,89 +17,89 @@ let totalSeconds = 0
 let intervalId = null
 
 const setDisplayTime = (hours, minutes, seconds) => {
-    hoursDisplay.textContent = formatNumber(hours, 'hh')
-    minutesDisplay.textContent = formatNumber(minutes, 'mm')
-    secondsDisplay.textContent = formatNumber(seconds, 'ss')
+	hoursDisplay.textContent = formatNumber(hours, 'hh')
+	minutesDisplay.textContent = formatNumber(minutes, 'mm')
+	secondsDisplay.textContent = formatNumber(seconds, 'ss')
 }
 
 const setupDisplay = () => {
-    const hours = parseInt(hoursInput.value) || 0
-    const minutes = parseInt(minutesInput.value) || 0
-    const seconds = parseInt(secondsInput.value) || 0
+	const hours = parseInt(hoursInput.value) || 0
+	const minutes = parseInt(minutesInput.value) || 0
+	const seconds = parseInt(secondsInput.value) || 0
 
-    totalSeconds = hours * 3600 + minutes * 60 + seconds
+	totalSeconds = hours * 3600 + minutes * 60 + seconds
 
-    updateDisplayFromTotalSeconds()
+	updateDisplayFromTotalSeconds()
 }
 
 const updateDisplayFromTotalSeconds = () => {
-    const hours = Math.floor(totalSeconds / 3600)
-    const minutes = Math.floor((totalSeconds % 3600) / 60)
-    const seconds = totalSeconds % 60
+	const hours = Math.floor(totalSeconds / 3600)
+	const minutes = Math.floor((totalSeconds % 3600) / 60)
+	const seconds = totalSeconds % 60
 
-    setDisplayTime(hours, minutes, seconds)
+	setDisplayTime(hours, minutes, seconds)
 }
 
 const updatePlayButtonText = () => {
-    playButton.textContent = isPlaying ? 'Pause' : 'Play'
+	playButton.textContent = isPlaying ? 'Pause' : 'Play'
 }
 
 const startCountdown = () => {
-    if (intervalId !== null) return
+	if (intervalId !== null) return
 
-    intervalId = setInterval(() => {
-        if (totalSeconds > 0 && isPlaying) {
-            totalSeconds--
+	intervalId = setInterval(() => {
+		if (totalSeconds > 0 && isPlaying) {
+			totalSeconds--
 
-            updateDisplayFromTotalSeconds()
-        } else {
-            resetTimer()
-            alert('Time is up!')
-        }
-    }, 1000)
+			updateDisplayFromTotalSeconds()
+		} else {
+			resetTimer()
+			alert('Time is up!')
+		}
+	}, 1000)
 }
 
 const playPause = () => {
-    if (totalSeconds <= 0) return
+	if (totalSeconds <= 0) return
 
-    isPlaying = !isPlaying
+	isPlaying = !isPlaying
 
-    updatePlayButtonText()
+	updatePlayButtonText()
 
-    if (isPlaying && intervalId === null) {
-        startCountdown()
-    } else if (!isPlaying && intervalId !== null) {
-        clearInterval(intervalId)
+	if (isPlaying && intervalId === null) {
+		startCountdown()
+	} else if (!isPlaying && intervalId !== null) {
+		clearInterval(intervalId)
 
-        intervalId = null
-    }
+		intervalId = null
+	}
 }
 
 const resetTimer = () => {
-    isPlaying = false
-    totalSeconds = 0
+	isPlaying = false
+	totalSeconds = 0
 
-    clearInterval(intervalId)
-    intervalId = null
+	clearInterval(intervalId)
+	intervalId = null
 
-    setDisplayTime(0, 0, 0)
-    updatePlayButtonText()
+	setDisplayTime(0, 0, 0)
+	updatePlayButtonText()
 
-    menu.style.display = 'flex'
-    display.style.display = 'none'
+	menu.style.display = 'flex'
+	display.style.display = 'none'
 }
 
 startButton.addEventListener('click', () => {
-    setupDisplay()
+	setupDisplay()
 
-    isPlaying = true
+	isPlaying = true
 
-    updatePlayButtonText()
-    startCountdown()
+	updatePlayButtonText()
+	startCountdown()
 
-    menu.style.display = 'none'
-    display.style.display = 'flex'
+	menu.style.display = 'none'
+	display.style.display = 'flex'
 })
 
-stopButton.addEventListener('click', resetTimer)
 playButton.addEventListener('click', playPause)
+stopButton.addEventListener('click', resetTimer)
