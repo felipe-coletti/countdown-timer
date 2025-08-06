@@ -1,106 +1,109 @@
 :root {
-    --color-background: #000;
-    --color-foreground: #fff;
-    --font-weight-bold: 800;
+	--color-background: #000;
+	--color-foreground: #fff;
+	--font-weight-bold: 800;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
 }
 
 #main {
-    align-items: center;
-    background-color: var(--color-background);
-    display: flex;
-    height: 100vh;
-    justify-content: center;
-    width: 100%;
+	align-items: center;
+	background-color: var(--color-background);
+	display: flex;
+	height: 100vh;
+	justify-content: center;
+	width: 100%;
 }
 
 .container {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    justify-content: center;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	justify-content: center;
+	padding: 2rem;
 }
 
 #input-area {
-    display: flex;
-    gap: 1rem;
+	display: flex;
+	gap: 1rem;
 }
 
 .label {
-    align-items: center;
-    color: var(--color-foreground);
-    display: flex;
-    flex-direction: column;
-    font-size: 1rem;
-    font-weight: var(--font-weight-bold);
-    gap: 0.5rem;
-    text-transform: uppercase;
+	align-items: center;
+	color: var(--color-foreground);
+	display: flex;
+	flex-direction: column;
+	font-size: 1rem;
+	font-weight: var(--font-weight-bold);
+	gap: 0.5rem;
+	text-transform: uppercase;
 }
 
 .input {
-    background-color: transparent;
-    border: none;
-    text-align: center;
-    width: 3ch;
+	background-color: transparent;
+	border: none;
+	text-align: center;
+	width: 3ch;
 }
 
 .primary-title {
-    font-size: 4rem;
+	font-size: 4rem;
 }
 
 .title {
-    color: var(--color-foreground);
-    font-weight: var(--font-weight-bold);
+	color: var(--color-foreground);
+	font-weight: var(--font-weight-bold);
 }
 
 .primary-button {
-    background-color: var(--color-foreground);
-    color: var(--color-background)
+	background-color: var(--color-foreground);
+	color: var(--color-background);
 }
 
 .tertiary-button {
-    border: 1px solid var(--color-foreground);
+	border: 1px solid var(--color-foreground);
 }
 
-.primary-button, .tertiary-button {
-    border: none;
+.primary-button,
+.tertiary-button {
+	border: none;
 }
 
-.secondary-button, .tertiary-button {
-    background-color: transparent;
-    color: var(--color-foreground);
+.secondary-button,
+.tertiary-button {
+	background-color: transparent;
+	color: var(--color-foreground);
 }
 
 .button {
-    align-items: center;
-    border-radius: 1.5rem;
-    cursor: pointer;
-    display: flex;
-    font-size: 1rem;
-    font-weight: var(--font-weight-bold);
-    justify-content: center;
-    padding-block: 0.75rem;
-    padding-inline: 1.5rem;
+	align-items: center;
+	border-radius: 1.5rem;
+	cursor: pointer;
+	display: flex;
+	font-size: 1rem;
+	font-weight: var(--font-weight-bold);
+	justify-content: center;
+	padding-block: 0.75rem;
+	padding-inline: 1.5rem;
 }
 
 #display {
-    display: none;
+	display: none;
 }
 
 #controls {
-    align-items: center;
-    display: flex;
-    gap: 1rem;
-    transition: opacity 1.2s;
+	align-items: center;
+	display: flex;
+	gap: 1rem;
+	transition: opacity 1.2s;
 }
 
 .container:not(:hover) #controls {
-    opacity: 0;
+	opacity: 0;
 }
