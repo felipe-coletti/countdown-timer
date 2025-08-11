@@ -103,7 +103,3 @@
 	gap: 1rem;
 	transition: opacity 1.2s;
 }
-
-.container:not(:hover) #controls {
-	opacity: 0;
-}
