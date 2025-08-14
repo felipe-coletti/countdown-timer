@@ -1,45 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countdown Timer</title>
-    <link rel="stylesheet" href="src/styles/global.css" />
-	<script type="module" src="src/scripts/main.js" defer></script>
-    <script type="module" src="src/scripts/input.js" defer></script>
-</head>
-<body>
-    <main id="main">
-        <div id="menu" class="container">
-            <div id="input-area">
-                <label class="label">
-                    Hours
-                    <input type="text" inputmode="numeric" id="hours-input" class="primary-title title input" maxlength="2" data-type="hh" placeholder="hh" value="00">
-                </label>
-                <label class="label">
-                    Minutes
-                    <input type="text" inputmode="numeric" id="minutes-input" class="primary-title title input" maxlength="2" data-type="mm" placeholder="mm" value="00">
-                </label>
-                <label class="label">
-                    Seconds
-                    <input type="text" inputmode="numeric" id="seconds-input" class="primary-title title input" maxlength="2" data-type="ss" placeholder="ss" value="00">
-                </label>    
-            </div>
-            <button id="start-button" class="primary-button button" type="button">Start</button>
-        </div>
-        <div id="display" class="container">
-            <h1 class="primary-title title">
-                <span id="hours-display">00</span>
-                :
-                <span id="minutes-display">00</span>
-                :
-                <span id="seconds-display">00</span>
-            </h1>
-            <div id="controls">
-                <button type="button" id="play-button" class="primary-button button">Play</button>
-                <button type="button" id="stop-button" class="tertiary-button button">Stop</button>
-            </div>
-        </div>
-    </main>
-</body>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Countdown Timer</title>
+		<link rel="stylesheet" href="src/styles/global.css" />
+		<script type="module" src="src/scripts/main.js" defer></script>
+		<script type="module" src="src/scripts/input.js" defer></script>
+	</head>
+	<body>
+		<main id="main">
+			<div id="menu" class="container">
+				<div id="input-area">
+					<label class="label">
+						Horas
+						<input
+							type="text"
+							inputmode="numeric"
+							id="hours-input"
+							class="primary-title title input"
+							maxlength="2"
+							data-type="hh"
+							placeholder="hh"
+							value="00"
+						/>
+					</label>
+					<label class="label">
+						Minutos
+						<input
+							type="text"
+							inputmode="numeric"
+							id="minutes-input"
+							class="primary-title title input"
+							maxlength="2"
+							data-type="mm"
+							placeholder="mm"
+							value="00"
+						/>
+					</label>
+					<label class="label">
+						Segundos
+						<input
+							type="text"
+							inputmode="numeric"
+							id="seconds-input"
+							class="primary-title title input"
+							maxlength="2"
+							data-type="ss"
+							placeholder="ss"
+							value="00"
+						/>
+					</label>
+				</div>
+				<button id="start-button" class="primary-button button" type="button">Iniciar</button>
+			</div>
+			<div id="display" class="container">
+				<h1 class="primary-title title">
+					<span id="hours-display">00</span>
+					:
+					<span id="minutes-display">00</span>
+					:
+					<span id="seconds-display">00</span>
+				</h1>
+				<div id="controls">
+					<button type="button" id="play-button" class="primary-button button">Pausar</button>
+					<button type="button" id="stop-button" class="tertiary-button button">Parar</button>
+				</div>
+			</div>
+		</main>
+	</body>
 </html>

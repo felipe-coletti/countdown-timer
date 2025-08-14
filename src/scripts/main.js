@@ -41,7 +41,7 @@ const updateDisplayFromTotalSeconds = () => {
 }
 
 const updatePlayButtonText = () => {
-	playButton.textContent = isPlaying ? 'Pause' : 'Play'
+	playButton.textContent = isPlaying ? 'Pausar' : 'Retomar'
 }
 
 const startCountdown = () => {
